@@ -2,6 +2,10 @@ package com.retrans.test;
 
 import org.testng.annotations.Test;
 import org.testng.AssertJUnit;
+
+import java.util.List;
+import java.util.Map;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -13,6 +17,7 @@ import com.retrans.framework.pageobjects.CreateActionsPage;
 import com.retrans.framework.pageobjects.EditLiteraturesPage;
 //import com.retrans.framework.pageobjects.ftaOrderpage;
 import com.retrans.framework.pageobjects.FtaOrderpage;
+import com.retrans.framework.utils.TestDataFromJsonUtils;
 
 public class RetransTest extends TestBase {
 
@@ -332,11 +337,28 @@ public class RetransTest extends TestBase {
 
 	// @Test
 	public void selectMultipleLiteratures() {
+
+		String testDataFile = "selectMultipleLiteratures.json";
+		List<Map<String, String>> testData = TestDataFromJsonUtils.readJsonTestDataFromFile(testDataFile);
+
+		String literature1 = testData.get(0).get("literature1");
+		String literature2 = testData.get(0).get("literature2");
+		String literature3 = testData.get(0).get("literature3");
+		String literature4 = testData.get(0).get("literature4");
+
+		System.out.println("literature1 :" + literature1);
+		System.out.println("literature2 :" + literature2);
+
 		listLiteItemsPage.navigateToListLitItemsPage();
-		listLiteItemsPage.selectLiteratureByCheckBox("2022_W37_9");
-		listLiteItemsPage.selectLiteratureByCheckBox("2022_W37_3");
-		listLiteItemsPage.selectLiteratureByCheckBox("2022_W37_8");
-		listLiteItemsPage.selectLiteratureByCheckBox("2022_W37_1");
+		listLiteItemsPage.selectLiteratureByCheckBox(literature1);
+		listLiteItemsPage.selectLiteratureByCheckBox(literature2);
+		listLiteItemsPage.selectLiteratureByCheckBox(literature3);
+		listLiteItemsPage.selectLiteratureByCheckBox(literature4);
+		
+//		listLiteItemsPage.selectLiteratureByCheckBox("2022_W37_9");
+//		listLiteItemsPage.selectLiteratureByCheckBox("2022_W37_3");
+//		listLiteItemsPage.selectLiteratureByCheckBox("2022_W37_8");
+//		listLiteItemsPage.selectLiteratureByCheckBox("2022_W37_1");
 		threadwait(3000);
 	}
 
