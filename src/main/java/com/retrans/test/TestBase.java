@@ -66,7 +66,7 @@ public class TestBase {
 	@BeforeClass
 	public void beforeTest() {
 		System.out.println("Before Test");
-
+		System.setProperty("webdriver.http.factory", "jdk-http-client");
 		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
