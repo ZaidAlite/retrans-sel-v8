@@ -5,8 +5,8 @@
     <classes>
       <class name="com.retrans.test.RetransTest">
         <methods>
+          <include name="completeReTrans"/>
           <include name="beforeTest"/>
-          <include name="closeInactiveQuery"/>
           <include name="afterTest"/>
         </methods>
       </class> <!-- com.retrans.test.RetransTest -->

@@ -24,7 +24,7 @@ public class TestBase {
 		} catch (FileNotFoundException fie) {
 			fie.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace(); 
+			e.printStackTrace();
 		}
 	}
 
@@ -36,7 +36,7 @@ public class TestBase {
 
 	public static ListLiteraturesPage listLiteItemsPage = null;
 
-	public static CompleteActivity completeActivity = null ; 
+	public static CompleteActivity completeActivity = null;
 
 	public static String hostIP = properties.getProperty("hostip");
 	public static String context = properties.getProperty("context");

@@ -3,6 +3,7 @@ package com.retrans.test;
 import org.testng.annotations.Test;
 import org.testng.AssertJUnit;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -24,26 +25,117 @@ public class RetransTest extends TestBase {
 	private static final String Driver = null;
 	private static Logger logger = LogManager.getLogger(RetransTest.class);
 
-	// @Test
+	private String testDataFile = "selectMultipleLiteratures.json";
+	private List<Map<String, String>> testData = TestDataFromJsonUtils.readJsonTestDataFromFile(testDataFile);
+
+ @Test
+	public void completeReTrans() throws IOException {
+		createPubMedQuery();
+		createEmbaseQuery();
+		bulkClaimReset();
+		createUser();
+		createRole();
+		createMedicalTerms();
+		createBulkMedicalTerms();
+		createAppBucketTerms();
+		createBulkAppBucketTerms();
+		inactiveUser();
+		unlockActiveUser();
+		createCitationSingle();
+		createQueryBlank();
+		
+	}
+
+//	@Test
+	public void createBusinessUnit() throws IOException {
+		listLiteItemsPage.createBusinessUnit();
+		
+		
+
+	}
+
+//	@Test
+	public void createQueryBlank() throws IOException {
+		listLiteItemsPage.createQueryBlank();
+	}
+
+//	@Test
+	public void createPubMedQuery() throws IOException {
+		listLiteItemsPage.createPubMedQuery();
+
+	}
+
+//	@Test
+	public void createCitationSingle() throws IOException {
+		listLiteItemsPage.createCitationSingle();
+	}
+
+//	@Test
+	public void createEmbaseQuery() throws IOException {
+		listLiteItemsPage.createEmbaseQuery();
+	}
+
+//	@Test
+	public void bulkClaimReset() throws IOException {
+		listLiteItemsPage.bulkClaimReset();
+	}
+
+//	@Test
+	public void createUser() throws IOException {
+		listLiteItemsPage.createUser();
+	}
+
+//	@Test
+	public void createRole() throws IOException {
+		listLiteItemsPage.createRole();
+	}
+
+//	@Test
+	public void createMedicalTerms() throws IOException {
+		listLiteItemsPage.createMedicalTerms();
+	}
+
+//	@Test
+	public void createAppBucketTerms() throws IOException {
+		listLiteItemsPage.createAppBucketTerms();
+
+	}
+
+//	@Test
+	public void inactiveUser() throws IOException {
+		listLiteItemsPage.inactiveUser();
+	}
+
+//	@Test
+	public void unlockActiveUser() throws IOException {
+		listLiteItemsPage.unlockActiveUser();
+	}
+
+//@Test
+	public void createBulkMedicalTerms() throws IOException {
+		listLiteItemsPage.createBulkMedicalTerms();
+
+	}
+
+// @Test
+	public void createBulkAppBucketTerms() throws IOException {
+		listLiteItemsPage.createBulkAppBucketTerms();
+
+	}
+
+//	@Test
+//	public void navigatingToQueryCreatePage() {
+//		listLiteItemsPage.navigatingToQueryCreatePage();
+//		dropdownFiledInCreateQuery();
+
+//	}
+
+//	 @Test
 	public void claimLiteraturebyzaid() {
 
 		listLiteItemsPage.navigateToListLitItemsPage();
 		listLiteItemsPage.clearFilter();
 		threadwait(5000);
-
-	}
-
-	// @Test
-
-	public void createCitationSingle() {
-		listLiteItemsPage.createCitationSingle();
-
-	}
-
-	@Test
-
-	public void closeInactiveQuery() {
-		listLiteItemsPage.closeInactiveQuery();
 
 	}
 
@@ -97,11 +189,6 @@ public class RetransTest extends TestBase {
 
 		CompleteActivityButton();
 
-	}
-
-//	@Test
-	public void createEmbaseQuery() {
-		listLiteItemsPage.createEmbaseQuery();
 	}
 
 	// @Test
@@ -338,9 +425,6 @@ public class RetransTest extends TestBase {
 	// @Test
 	public void selectMultipleLiteratures() {
 
-		String testDataFile = "selectMultipleLiteratures.json";
-		List<Map<String, String>> testData = TestDataFromJsonUtils.readJsonTestDataFromFile(testDataFile);
-
 		String literature1 = testData.get(0).get("literature1");
 		String literature2 = testData.get(0).get("literature2");
 		String literature3 = testData.get(0).get("literature3");
@@ -354,11 +438,7 @@ public class RetransTest extends TestBase {
 		listLiteItemsPage.selectLiteratureByCheckBox(literature2);
 		listLiteItemsPage.selectLiteratureByCheckBox(literature3);
 		listLiteItemsPage.selectLiteratureByCheckBox(literature4);
-		
-//		listLiteItemsPage.selectLiteratureByCheckBox("2022_W37_9");
-//		listLiteItemsPage.selectLiteratureByCheckBox("2022_W37_3");
-//		listLiteItemsPage.selectLiteratureByCheckBox("2022_W37_8");
-//		listLiteItemsPage.selectLiteratureByCheckBox("2022_W37_1");
+
 		threadwait(3000);
 	}
 
@@ -371,20 +451,36 @@ public class RetransTest extends TestBase {
 		listLiteItemsPage.closeLiteratureDialog();
 	}
 
-	// @Test
+//	 @Test
 	public void claimLiterature() {
+
+		String filterBySearchType = testData.get(1).get("filterBySearchType");
+		String filterByClassificationIcon = testData.get(1).get("filterByClassificationIcon");
+
 		listLiteItemsPage.navigateToListLitItemsPage();
 		listLiteItemsPage.selectLiteratureByCheckBox("2022_W37_9");
 		listLiteItemsPage.claimSelectedLiteratureItems();
 		threadwait(5000);
-		listLiteItemsPage.filterBySearchType("PubMed");
-		listLiteItemsPage.filterByClassificationIcon("ICSR");
+		listLiteItemsPage.filterBySearchType(filterBySearchType);
+		listLiteItemsPage.filterByClassificationIcon(filterByClassificationIcon);
 	}
 
 	// @Test
 	public void filterSearchType() {
 		logger.info("selecting SearchType");
 		listLiteItemsPage.filterBySearchType("Embase");
+		threadwait(5000);
+
+	}
+
+	// @Test
+	public void dropdownFiledInCreateQuery() {
+		logger.info("selecting Business Unit");
+
+		String dropdownFiledInCreateQuery = testData.get(0).get("UniForEmbase");
+		logger.info("Value from Json" + dropdownFiledInCreateQuery);
+
+		listLiteItemsPage.dropdownFiledInCreateQuery(dropdownFiledInCreateQuery);
 		threadwait(5000);
 
 	}
@@ -410,7 +506,7 @@ public class RetransTest extends TestBase {
 	public void filterLiteraturesByBusinessUnit() {
 		logger.info("selecting Business Uint ");
 
-		listLiteItemsPage.filterByBusinessUnit("Dev_Test_Unit");
+		listLiteItemsPage.filterByBusinessUnit1("Dev_Test_Unit");
 		threadwait(5000);
 
 	}
@@ -667,7 +763,7 @@ public class RetransTest extends TestBase {
 		listLiteItemsPage.clearFilter();
 		threadwait(5000);
 
-		listLiteItemsPage.filterByBusinessUnit("Testing-BU");
+		listLiteItemsPage.filterByBusinessUnit1("Testing-BU");
 		threadwait(3000);
 		listLiteItemsPage.clearFilter();
 		threadwait(6000);

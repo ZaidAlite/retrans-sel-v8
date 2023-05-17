@@ -1,8 +1,163 @@
 [
 	{
-		"literature1": "2022_W37_9",
-		"literature2": "2022_W37_3",
-		"literature3": "2022_W37_8",
-		"literature4": "2022_W37_1"
+		"CompanyUnit"              : "Dev_Test_Unit",
+		"SearchSource"             : "PubMed",
+		"Description"              : "creating Pubmed query",
+		"Product"                  : "Dolo 650",
+		"SearchStartDateFromMonth" : "Jan",
+		"SearchStartDatefromYear"  : "2023",
+		"SearchStart"			   : "11",
+		"SearchStartDateToMonth"   : "Jan",
+		"SearchStartDateToYear"    : "2023",
+		"SearchStartTo"			   : "20",
+		"SearchDateMonth"          : "Jan",
+		"SearchDateYear"		   : "2023",
+		"SearchDateStart"          : "12",
+		"SearchTitle"              : "Creating a PubMed Query For Fever 14 ",
+		"ProjectCode"              : "Code Automation",
+		"CSVfilePath"              : "D:\\All_Software\\Automation_Files_Input\\csv-Fever-set.csv"
+	
+	},
+	
+	{
+	
+	    "CompanyUnitForEmbase"              : "Dev_Test_Unit",
+		"SearchSourceForEmbase"             : "Embase",
+		"DescriptionForEmbase"              : "creating Embase query",
+		"ProductForEmbase"                  : "Anastrozole",
+		"SearchStartDateFromMonthForEmbase" : "Feb",
+		"SearchStartDatefromYearForEmbase"  : "2023",
+		"SearchStartForEmbase"			    : "12",
+		"SearchStartDateToMonthForEmbase"   : "Feb",
+		"SearchStartDateToYearForEmbase"    : "2023",
+		"SearchStartToForEmbase"		    : "20",
+		"SearchDateMonthForEmbase"          : "Feb",
+		"SearchDateYearForEmbase"		    : "2023",
+		"SearchDateStartForEmbase"          : "22",
+		"SearchTitleForEmbase"              : "Creating a Embase Query",
+		"ProjectCodeForEmbase"              : "Code Automation For Embase",
+		"CSVfilePathEmbaseForEmbase"        : "D:\\All_Software\\Automation_Files_Input\\DuplicateCheckFile.csv"
+		
+	},
+		    
+	{
+		
+	    "FilterByClaim"                	    :   "Unclaimed",
+	    "FilterByClaimed"					:   "Claimed by me",
+	    "UserID"							:	"Zaid_Qc"
+	
+	},
+	
+	{
+	    "AppUserId"           				:   "Mark_Qc",
+	    "UserFirstName"					 	:	"Mark",	
+	    "UserLastName"						:	"wood",
+	    "AppEmailId"						:	"markwood@Test.com",
+	    "Password"							:	"#De#m72I221",
+	    "ConfirmPassword"					:	"#De#m72I221",	
+	    "Telephone"							:	"9845412356",
+	    "Address"							:	"4412 Allan St, Kissimmee, FL 34746, United States"
+	  
+	},
+	
+	
+	{
+	
+	   "RoleName"							:	"Automation_Role1234",
+	   "Description"						:	"This is Role is created for 1 Testing 6.2"
+		
+	},
+		
+	
+	{
+	
+	   "Name" 								: "Med Terms By Automation",
+	   "Type"								: "IME",
+	   "Pattern"							: "Pattern",
+	   "Description"						: "Description"
+		
+	},
+
+{
+
+     "UserID"								: "Mark_Qc"
+
+},
+
+
+{
+
+    "CSVForMedTerms"						: "D:\\All_Software\\Automation_Files_Input\\Med_Terms_Upload.csv",
+    "ModuleName"							:  "Medical Terms"
+
+},
+
+{
+
+	   "Name" 								: "App Bucket Terms By Automation 1",
+	   "Type"								: "Accepted",
+	   "Pattern"							: "Pattern",
+	   "Description"						: "Description"
+
+},
+
+
+{
+
+   "CSVForAppBucketTerms"					: "D:\\All_Software\\Automation_Files_Input\\Med_Terms_Upload.csv",
+    "ModuleName"							:  "Medical Terms"
+
+},
+
+
+
+{
+
+    "BusinessUnit"						 : "Dev_Test_Unit",
+    "Title"								 : "Severe herpes simplex virus pneumonia in an elderly, immunocompetent patient",
+	"Authors"							 :	"Ishihara T., Yanagi H., Ozawa H., Takagi A.",
+	"UID"								 :	"FURQC1004TC",
+	"DOI"								 :	"10.1136/bcr-2017-224022Test",
+	"ISSN"							     :	"1757-790X (electronic)"	,
+	"AccessionId"						 :  "20180519517",
+	"Abstract"							 :  "Severe herpes simplex virus pneumonia in an elderly, immunocompetent patient",
+	"DrugTerms"							 :  "(Based on full text) amoxicillin plus clavulanic acid, antibiotic agent, azithromycin, cefalexin, clindamycin, cotrimoxazole, doxycycline, quinolone derivative",
+	"CsvFilePath"						 :  "D:\\All_Software\\Automation_Files_Input\\csv-Fever-set.csv"
+	
+
+},
+
+
+{
+
+        "CompanyUnit" 			             : "Dev_Test_Unit",
+        "SearchSource"            			 : "Embase",
+		"Description"            			 : "creating Embase query for demo to team automation 15 ",
+		"Product"                 			 : "Anastrozole",
+		"SearchStartDateFromMonth"			 : "Feb",
+		"SearchStartDatefromYear" 			 : "2023",
+		"SearchStart"			   			 : "12",
+		"SearchStartDateToMonth"  			 : "Feb",
+		"SearchStartDateToYear"   			 : "2023",
+		"SearchStartTo"		    			 : "20",
+		"SearchDateMonth"         			 : "Feb",
+		"SearchDateYear"		  			 : "2023",
+		"SearchDateStart"          			 : "22",
+		"SearchTitle"           			 : "Creating a Embase Query For Fever 15 ",
+		"ProjectCode"               	     : "Code Automation For Embase",
+		"CSVfilePathEmbase"        			 : "D:\\All_Software\\Automation_Files_Input\\DuplicateCheckFile.csv"
+
+},	
+
+{
+
+       "CSVForAppBucketTerms"				  : "D:\\All_Software\\Automation_Files_Input\\Sample_Accepted_Rejected_Terms.csv",
+       "ModuleName"							  : "NLP",
+       "UserId"                               : "Zaid_Qc"
 	}
 ]
+
+
+
+
+		
