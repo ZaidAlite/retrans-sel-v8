@@ -28,24 +28,53 @@ public class RetransTest extends TestBase {
 	private String testDataFile = "selectMultipleLiteratures.json";
 	private List<Map<String, String>> testData = TestDataFromJsonUtils.readJsonTestDataFromFile(testDataFile);
 
- @Test
+// @Test
 	public void completeReTrans() throws IOException {
+		
+		createBusinessUnit();
+		createProduct();
 		createPubMedQuery();
 		createEmbaseQuery();
 		bulkClaimReset();
 		createUser();
 		createRole();
 		createMedicalTerms();
-		createBulkMedicalTerms();
+		createBulkMedicalTerms(); 
 		createAppBucketTerms();
 		createBulkAppBucketTerms();
 		inactiveUser();
 		unlockActiveUser();
 		createCitationSingle();
 		createQueryBlank();
+		creatingBulkProductandExportProducts(); 
+		creatingWorkFlowRules();
+		
+}
+	
+	@Test
+	public void creatingWorkFlowRules() throws IOException {
+		listLiteItemsPage.creatingWorkFlowRules();	
+		
+}
+	
+//	@Test
+	public void creatingBulkProductandExportProducts() throws IOException {
+		listLiteItemsPage.creatingBulkProductandExportProducts();	
+		
+}
+	
+//	@Test
+	public void createProduct() throws IOException {
+		listLiteItemsPage.createProduct();	
+	}
+	
+//	@Test
+	public void createingBulkUser() throws IOException {
+		listLiteItemsPage.createingBulkUser();
+		
 		
 	}
-
+	
 //	@Test
 	public void createBusinessUnit() throws IOException {
 		listLiteItemsPage.createBusinessUnit();
@@ -197,7 +226,7 @@ public class RetransTest extends TestBase {
 		listLiteItemsPage.caseCreationTab();
 		threadwait(5000);
 
-	}
+	} 
 
 	// @Test
 	public void caseAdd() {
@@ -482,7 +511,7 @@ public class RetransTest extends TestBase {
 
 		listLiteItemsPage.dropdownFiledInCreateQuery(dropdownFiledInCreateQuery);
 		threadwait(5000);
-
+ 
 	}
 
 	// @Test

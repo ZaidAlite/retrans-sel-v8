@@ -38,9 +38,9 @@ public class TestBase {
 
 	public static CompleteActivity completeActivity = null;
 
-	public static String hostIP = properties.getProperty("hostip");
+	public static String hostNAME = properties.getProperty("hostname");
 	public static String context = properties.getProperty("context");
-	public static String baseUrl = "http://" + hostIP + "/" + context + "/login.xhtml";
+	public static String baseUrl = "https://" + hostNAME + "/" + context + "/login.xhtml";
 	public static String chromeDriverPath = properties.getProperty("driver-path");
 
 	static {

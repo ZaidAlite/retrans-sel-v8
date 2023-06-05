@@ -5,7 +5,7 @@
     <classes>
       <class name="com.retrans.test.RetransTest">
         <methods>
-          <include name="completeReTrans"/>
+          <include name="creatingWorkFlowRules"/>
           <include name="beforeTest"/>
           <include name="afterTest"/>
         </methods>

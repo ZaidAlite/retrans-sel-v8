@@ -490,7 +490,7 @@ public class ListLiteraturesPage<XSSWorkbook> extends BasePage {
 
 	public void navigateToListLitItemsPage() {
 		logger.info("Navigating to inbox");
-		driver.get("http://" + TestBase.hostIP + "/" + TestBase.context + "/views/literatureItems/list.xhtml");
+		driver.get("http://" + TestBase.hostNAME + "/" + TestBase.context + "/views/literatureItems/list.xhtml");
 		threadwait(4000);
 
 	}
@@ -841,8 +841,8 @@ public class ListLiteraturesPage<XSSWorkbook> extends BasePage {
 		String testDataFile = "selectMultipleLiteratures.json";
 		List<Map<String, String>> testData = TestDataFromJsonUtils.readJsonTestDataFromFile(testDataFile);
 
-		String Queries = "//span[normalize-space()='Queries..']";
 		String Literature = "//span[normalize-space()='Literature']";
+//		String Queries = "//span[normalize-space()='Queries..']";
 		String CreateQueryBlank = "/html/body/div[1]/div/form[1]/div/ul/li[1]/ul/li[3]/ul/li[2]/a";
 		String BusinessUnit = "//*[@id=\"createNewQueryDialogForm:selectedUnits\"]/ul";
 		String BusinessUnitSearchBar = "//input[@aria-label='Filter Input']";
@@ -897,7 +897,7 @@ public class ListLiteraturesPage<XSSWorkbook> extends BasePage {
 		driver.findElement(By.xpath(Literature)).click();
 		logger.info("Navigating To Literature Menu");
 
-		//driver.findElement(By.xpath(Queries)).click();
+		// driver.findElement(By.xpath(Queries)).click();
 		logger.info("Navigating To Literature Queries List");
 		threadwait(8000);
 
@@ -1673,7 +1673,7 @@ public class ListLiteraturesPage<XSSWorkbook> extends BasePage {
 		driver.findElement(By.xpath(xpathAdanceFilter)).click();
 		logger.info("Clicking on Adance Filter button");
 
-		driver.findElement(By.xpath(xpathUserIdTextField)).sendKeys(AppUserId);
+//		driver.findElement(By.xpath(xpathUserIdTextField)).sendKeys(AppUserId);
 		logger.info("Entering the Created User id");
 
 		driver.findElement(By.xpath(xpathSearchButton)).click();
@@ -2737,10 +2737,1671 @@ public class ListLiteraturesPage<XSSWorkbook> extends BasePage {
 
 	public void createBusinessUnit() throws IOException {
 		threadwait(5000);
+		logger.info("Creating a Business Unit & Vefiying created Business Unit Audit");
+
+		Date currentdate = new Date();
+		String screenShotFileName = timeStampFormat.format(currentdate);
+
+		threadwait(5000);
+		String testDataFile = "selectMultipleLiteratures.json";
+		List<Map<String, String>> testData = TestDataFromJsonUtils.readJsonTestDataFromFile(testDataFile);
 
 		String Libary = "//body/div[@id='layout-topbar-cover']/div[@id='layout-topbar']/form[@id='menuform1']/div[@id='layout-menu-cover']/ul[@id='layout-menu']/li[@id='menuform1:admin_xml']/a[1]";
+		String BusinessUnit = "//a[@href='/ReTrans/views/companyUnit/list.xhtml']";
+		String CreateButton = "//span[normalize-space()='Create']";
+		String BUId = "//input[@id='companyUnitForm:companyCode']";
+		String BUInterchangeId = "//input[@id='companyUnitForm:interchangeId']";
+		String BUName = "//input[@id='companyUnitForm:named2']";
+		String EncodingType = "//div[@id='companyUnitForm:encodingType']//span[@class='ui-icon ui-icon-triangle-1-s ui-c']";
+		String EncodingTypeSearch = "//input[@id='companyUnitForm:encodingType_filter']";
+		String EncodeSelect = "/html/body/div[15]/div[2]/table/tbody/tr[1]/td";
+		String Department = "//input[@id='companyUnitForm:departmentId']";
+		String EmailId = "//input[@id='companyUnitForm:emailId']";
+		String Fax = "//input[@id='companyUnitForm:fax']";
+		String Address = "//textarea[@id='companyUnitForm:address']";
+		String SelectWorkflowLookUp = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[1]/div/div[5]/div[2]/button";
+		String WorkflowName = "//input[@id='compWorkFlowLookupForm:wfname']";
+		String SearchButton = "//span[normalize-space()='Search']";
+		String Selectworkflow = "/html/body/div[2]/div[2]/div/form[3]/div/div[2]/div/div[3]/div[3]/table/tbody/tr/td[1]/div/div[2]/span";
+		String SelectButton = "//button[@id='compWorkFlowLookupForm:j_idt186']//span[@class='ui-button-text ui-c'][normalize-space()='Select']";
+		String OnDuplicate = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[1]/div/div[5]/div[4]/div/div[1]/div/div[3]/span";
+		String OnDuplicateSearch = "/html/body/div[32]/div[1]/input";
+		String OnDuplicateSelect = "/html/body/div[32]/div[2]/table/tbody/tr[1]/td";
+		String OnReject = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[1]/div/div[5]/div[4]/div/div[2]/div/div[3]";
+		String OnRejectSearch = "//input[@id='companyUnitForm:j_idt55:1:traigeTarget_filter']";
+		String OnRejectSelect = "/html/body/div[33]/div[2]/table/tbody/tr[2]/td";
+		String OnValidICSR = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[1]/div/div[5]/div[4]/div/div[3]/div";
+		String OnValidICSRSearch = "//input[@id='companyUnitForm:j_idt55:2:traigeTarget_filter']";
+		String OnValidICSRSelect = "/html/body/div[34]/div[2]/table/tbody/tr[2]/td";
+		String OnSafetyinfo = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[1]/div/div[5]/div[4]/div/div[4]/div";
+		String OnSafetyinfoSearch = "//input[@id='companyUnitForm:j_idt55:3:traigeTarget_filter']";
+		String OnSafetyinfoSelect = "/html/body/div[35]/div[2]/table/tbody/tr[2]/td";
+		String ExtraConfig = "//a[@id='companyUnitForm:j_idt60_toggler']//span";
+		String AllowedClassifications = "//div[@id='companyUnitForm:compSafetyInfo']//span[@class='ui-icon ui-icon-triangle-1-s']";
+		String AllowedClassificationsSelect = "//div[@id='companyUnitForm:compSafetyInfo_panel']//div[@class='ui-widget-header ui-corner-all ui-selectcheckboxmenu-header ui-helper-clearfix']//span[@class='ui-chkbox-icon ui-icon ui-icon-blank']";
+		String DefaultClassifications = "//div[@id='companyUnitForm:compClassifications']//ul[@class='ui-selectcheckboxmenu-multiple-container ui-widget ui-inputfield ui-state-default ui-corner-all']";
+		String DefaultClassificationsSelect = "//div[@id='companyUnitForm:compClassifications_panel']//div[@class='ui-widget-header ui-corner-all ui-selectcheckboxmenu-header ui-helper-clearfix']//div[@class='ui-chkbox-box ui-widget ui-corner-all ui-state-default']";
+		String AllowedSafetyInfo = "//div[@id='companyUnitForm:compAssessent']//span[@class='ui-icon ui-icon-triangle-1-s']";
+		String AllowedSafetyInfoSelect = "//div[@id='companyUnitForm:compAssessent_panel']//div[@class='ui-widget-header ui-corner-all ui-selectcheckboxmenu-header ui-helper-clearfix']//span[@class='ui-chkbox-icon ui-icon ui-icon-blank']";
+		String NLPTyp = "//div[@id='companyUnitForm:litEditTabs']//span[@class='ui-icon ui-icon-triangle-1-s']";
+		String NLPTypSelect = "//div[@class='ui-widget-header ui-corner-all ui-selectcheckboxmenu-header ui-helper-clearfix']//span[@class='ui-chkbox-icon ui-icon ui-icon-blank']";
+		String LiteratureTriage = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[3]/div/div[1]/fieldset[2]/div/div[1]/div/div/div/div/div[2]";
+		String AcceptedTerms = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[3]/div/div[1]/fieldset[2]/div/div[2]/div[2]/div/div/div/div[1]/fieldset/div/div/div/div[1]/div[1]/div/div[2]";
+		String ProductNames = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[3]/div/div[1]/fieldset[2]/div/div[2]/div[2]/div/div/div/div[1]/fieldset/div/div/div/div[2]/div[1]/div/div[2]";
+		String Events = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[3]/div/div[1]/fieldset[2]/div/div[2]/div[2]/div/div/div/div[1]/fieldset/div/div/div/div[3]/div[1]/div/div[2]/span";
+		String RejectedTerms = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[3]/div/div[1]/fieldset[2]/div/div[2]/div[2]/div/div/div/div[2]/fieldset/div/div/div/div[1]/div[1]/div/div[2]/span";
+		String Autoacceptancethreshold = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[3]/div/div[1]/fieldset[2]/div/div[2]/div[2]/div/div/div/div[2]/fieldset/div/div/div/div[2]/div[1]/div/div[2]/span";
+		String AccepetedSlider = "//div[@id='companyUnitForm:compTabPanel:searchKeyweightageSlider']";
+		String ProductsSlider = "//div[@id='companyUnitForm:compTabPanel:productNameweightageSlider']//span[@class='ui-slider-handle ui-state-default ui-corner-all']";
+		String EventSlider = "//div[@id='companyUnitForm:compTabPanel:ingredientsweightageSlider']//span";
+		String RejectTermSlider = "//div[@id='companyUnitForm:compTabPanel:rejTermsweightageSlider']//span";
+		String AutoAcceptanceThresholdSlider = "//div[@id='companyUnitForm:compTabPanel:litAutoProcessMinValueSlider']//span";
+		String AlertsOnActivityCompletion = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[3]/div/div[1]/fieldset[3]/div/div/div[1]/div[1]/div/div[2]/span";
+		String AlertsOnCreatingQueriesCitations = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[3]/div/div[1]/fieldset[3]/div/div/div[3]/div[1]/div/div[2]";
+		String AlertsOnRejectingCitationReview = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[3]/div/div[1]/fieldset[3]/div/div/div[5]/div[1]/div/div[2]/span";
+		String AlertsOnWorkflowCompletion = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[3]/div/div[1]/fieldset[3]/div/div/div[2]/div[1]/div/div[2]/span";
+		String AlertsOnFTArequests = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[3]/div/div[1]/fieldset[3]/div/div/div[4]/div[1]/div/div[2]/span";
+		String AlertsOnQueryChangeArchivedCitation = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[3]/div/div[1]/fieldset[3]/div/div/div[6]/div[1]/div/div[2]/span";
+
+		String AlertsOnActivityCompletionText = "//input[@id='companyUnitForm:compTabPanel:ALERT_ON_ACTIVITY_email']";
+		String AlertsOnCreatingQueriesCitationsText = "//input[@id='companyUnitForm:compTabPanel:ALERT_ON_ARRIVAL_email']";
+		String AlertsOnRejectingCitationReviewText = "//input[@id='companyUnitForm:compTabPanel:ALERT_ON_REJECT_email']";
+		String AlertsOnWorkflowCompletionText = "//input[@id='companyUnitForm:compTabPanel:ALERT_ON_WORKFLOW_email']";
+		String AlertsOnFTArequestsText = "//input[@id='companyUnitForm:compTabPanel:ALERT_ON_PO_email']";
+		String AlertsOnQueryChangeArchivedCitationText = "//input[@id='companyUnitForm:compTabPanel:ALERT_ON_ADMIN_email']";
+
+		String Parameters = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[3]/ul/li[2]/a";
+		String EnbaleML = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[3]/div/div[2]/div[2]/div[1]/fieldset/div/div/div[2]/div/div/div[2]/span";
+		String Enbale = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[3]/div/div[2]/div[2]/div[2]/fieldset/div/div/div[2]/div/div/div[2]/span";
+		String Boby = "//input[@id='companyUnitForm:compTabPanel:j_idt123:2:j_idt127:0:j_idt134']";
+
+		String CCAddress = "//input[@id='companyUnitForm:compTabPanel:j_idt123:2:j_idt127:5:j_idt134']";
+		String Subject = "//input[@id='companyUnitForm:compTabPanel:j_idt123:2:j_idt127:12:j_idt134']";
+		String ToAddress = "//input[@id='companyUnitForm:compTabPanel:j_idt123:2:j_idt127:16:j_idt134']";
+		String CaseInfoLabel = "//input[@id='companyUnitForm:compTabPanel:j_idt123:3:j_idt127:2:j_idt134']";
+		String TagsLabel = "//input[@id='companyUnitForm:compTabPanel:j_idt123:3:j_idt127:10:j_idt134']";
+		String SafetyRelevantLabel = "//input[@id='companyUnitForm:compTabPanel:j_idt123:3:j_idt127:13:j_idt134']";
+		String StudyCategoryLabel = "//input[@id='companyUnitForm:compTabPanel:j_idt123:3:j_idt127:14:j_idt134']";
+		String ProductsLabel = "//input[@id='companyUnitForm:compTabPanel:j_idt123:3:j_idt127:17:j_idt134']";
+		String EnableUseOnlyCPDLibrary = "//div[@id='companyUnitForm:compTabPanel:j_idt123:5:j_idt127:4:j_idt144']//span[@class='ui-chkbox-icon ui-icon ui-icon-blank ui-c']";
+
+		String WFRejected = "//input[@id='companyUnitForm:compTabPanel:j_idt123:6:j_idt127:1:j_idt148']";
+		String WFSafety = "//input[@id='companyUnitForm:compTabPanel:j_idt123:6:j_idt127:6:j_idt148']";
+		String WFICSR = "//input[@id='companyUnitForm:compTabPanel:j_idt123:6:j_idt127:11:j_idt148']";
+		String SavePara = "//button[@name='companyUnitForm:compTabPanel:saveUnitParams']//span";
+		String LiteratureConfig = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[3]/ul/li[1]";
+		String SaveandClose = "//span[normalize-space()='Save and Close']";
+
+		String ClearButton = "//span[normalize-space()='Clear']";
+		String AdvanceFilter = "//span[@class='ui-button-text ui-c'][normalize-space()='Advance Filter']";
+		String NameText = "//input[@id='filterPanelForm:j_idt75']";
+		String BUInterchangeIdText = "//input[@id='filterPanelForm:j_idt79']";
+		String Search = "//span[normalize-space()='Search']";
+		String ViewBu = "//a[@id='companyUnitListForm:companyUnitGrid:0:j_idt41']";
+
+		String xpathReports = "//span[normalize-space()='Reports']";
+		String xpathAdminAudit = "//a[@href='/ReTrans/views/audit/filterPanel.xhtml']//span[contains(text(),'Admin')]";
+		String xpathClearButton = "//span[@class='ui-button-icon-left ui-icon ui-c fa fa-eraser F20 gray']";
+		String xpathModuleName = "//*[@id=\"filterPanelForm:panelContextType_label\"]";
+		String xpathSelectModule = "//td[normalize-space()='NLP']";
+		String xpathMoudleSearcgBar = "//input[@id='filterPanelForm:panelContextType_filter']";
+		String xpathSearchauditButton = "//span[normalize-space()='Search']";
+		String xpathSessionId = "//a[@id='auditlistListForm:auditlistGrid:0:j_idt38']";
+		String xpathBackButton = "//*[@id=\"auditFieldLogForm:j_idt34\"]";
+		String xpathGenerateAll = "//span[normalize-space()='Generate Report(All)']";
+		String useridsearch = "//input[@id='filterPanelForm:j_idt40']";
+
+		String BUIdInput = testData.get(13).get("BUIdInput");
+		String BUInterchangeIdInput = testData.get(13).get("BUInterchangeIdInput");
+		String BUNameInput = testData.get(13).get("BUNameInput");
+		String TypeSearchInput = testData.get(13).get("TypeSearchInput");
+		String DepartmentInput = testData.get(13).get("DepartmentInput");
+		String EmailIdInput = testData.get(13).get("EmailIdInput");
+		String FaxInput = testData.get(13).get("FaxInput");
+		String AddressInput = testData.get(13).get("AddressInput");
+		String WorkflowNameInput = testData.get(13).get("WorkflowNameInput");
+		String OnDuplicateInput = testData.get(13).get("OnDuplicateInput");
+		String OnRejectInput = testData.get(13).get("OnRejectInput");
+		String OnValidICSRInput = testData.get(13).get("OnValidICSRInput");
+		String OnSafetyinfoInput = testData.get(13).get("OnSafetyinfoInput");
+
+		String AlertsOnActivityCompletionInput = testData.get(13).get("AlertsOnActivityCompletionInput");
+		String AlertsOnCreatingQueriesCitationsInput = testData.get(13).get("AlertsOnCreatingQueriesCitationsInput");
+		String AlertsOnRejectingCitationReviewInput = testData.get(13).get("AlertsOnRejectingCitationReviewInput");
+		String AlertsOnWorkflowCompletionInput = testData.get(13).get("AlertsOnWorkflowCompletionInput");
+		String AlertsOnFTArequestsInput = testData.get(13).get("AlertsOnFTArequestsInput");
+		String AlertsOnQueryChangeArchivedCitationInput = testData.get(13)
+				.get("AlertsOnQueryChangeArchivedCitationInput");
+
+		String BobyInput = testData.get(13).get("BobyInput");
+		String CCAddressInput = testData.get(13).get("CCAddressInput");
+		String SubjectInput = testData.get(13).get("SubjectInput");
+		String ToAddressInput = testData.get(13).get("ToAddressInput");
+		String CaseInfoLabelInput = testData.get(13).get("CaseInfoLabelInput");
+		String TagsLabelInput = testData.get(13).get("TagsLabelInput");
+		String SafetyRelevantLabelInput = testData.get(13).get("SafetyRelevantLabelInput");
+		String StudyCategoryLabelInput = testData.get(13).get("BobyInput");
+		String ProductsLabelInput = testData.get(13).get("StudyCategoryLabelInput");
+		String WFRejectedInput = testData.get(13).get("WFRejectedInput");
+		String WFSafetyInput = testData.get(13).get("WFSafetyInput");
+		String WFICSRInput = testData.get(13).get("WFICSRInput");
+		String UserIdInput = testData.get(13).get("UserIdInput");
+		String ModuleNameInput = testData.get(13).get("ModuleNameInput");
 
 		driver.findElement(By.xpath(Libary)).click();
+		threadwait(1000);
+		driver.findElement(By.xpath(BusinessUnit)).click();
+		logger.info("Navigating to Business Unit listing page");
+		threadwait(1000);
+
+		driver.findElement(By.xpath(CreateButton)).click();
+		logger.info("Click on create button to create a BusinessUnit ");
+		threadwait(1000);
+
+		driver.findElement(By.xpath(BUId)).sendKeys(BUIdInput);
+		threadwait(1000);
+		driver.findElement(By.xpath(BUInterchangeId)).sendKeys(BUInterchangeIdInput);
+		threadwait(1000);
+		driver.findElement(By.xpath(BUName)).sendKeys(BUNameInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(EncodingType)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(EncodingTypeSearch)).sendKeys(TypeSearchInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(EncodeSelect)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(Department)).sendKeys(DepartmentInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(EmailId)).sendKeys(EmailIdInput);
+		threadwait(1000);
+		driver.findElement(By.xpath(Fax)).sendKeys(FaxInput);
+		threadwait(1000);
+		driver.findElement(By.xpath(Address)).sendKeys(AddressInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(SelectWorkflowLookUp)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(WorkflowName)).sendKeys(WorkflowNameInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(SearchButton)).click();
+		threadwait(3000);
+
+		driver.findElement(By.xpath(Selectworkflow)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(SelectButton)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(OnDuplicate)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(OnDuplicateSearch)).sendKeys(OnDuplicateInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(OnDuplicateSelect)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(OnReject)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(OnRejectSearch)).sendKeys(OnRejectInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(OnRejectSelect)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(OnValidICSR)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(OnValidICSRSearch)).sendKeys(OnValidICSRInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(OnValidICSRSelect)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(OnSafetyinfo)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(OnSafetyinfoSearch)).sendKeys(OnSafetyinfoInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(OnSafetyinfoSelect)).click();
+		threadwait(2000);
+
+		File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile, new File(
+				"D://All_Software//ScreenShots//Business_Unit//BusinessUnit_01_" + screenShotFileName + ".png"));
+
+		driver.findElement(By.xpath(ExtraConfig)).click();
+		threadwait(2000);
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,450);");
+		threadwait(3000);
+
+		driver.findElement(By.xpath(AllowedClassifications)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(AllowedClassificationsSelect)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(DefaultClassifications)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(DefaultClassificationsSelect)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(AllowedSafetyInfo)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(AllowedSafetyInfoSelect)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(NLPTyp)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(NLPTypSelect)).click();
+		threadwait(2000);
+
+		File screenshotFile1 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile1, new File(
+				"D://All_Software//ScreenShots//Business_Unit//BusinessUnit_02_" + screenShotFileName + ".png"));
+
+		driver.findElement(By.xpath(ExtraConfig)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(LiteratureTriage)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(AcceptedTerms)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(ProductNames)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(Events)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(RejectedTerms)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(Autoacceptancethreshold)).click();
+		threadwait(1000);
+
+		WebElement Timeslider = driver.findElement(By.xpath(AccepetedSlider));
+
+		Actions move = new Actions(driver);
+		Action action = (Action) move.dragAndDropBy(Timeslider, 5, 0).build();
+		action.perform();
+
+		WebElement Timeslider1 = driver.findElement(By.xpath(ProductsSlider));
+
+		Actions move1 = new Actions(driver);
+		Action action1 = (Action) move1.dragAndDropBy(Timeslider1, 62, 0).build();
+		action1.perform();
+
+		WebElement Timeslider2 = driver.findElement(By.xpath(EventSlider));
+
+		Actions move2 = new Actions(driver);
+		Action action2 = (Action) move2.dragAndDropBy(Timeslider2, 63, 0).build();
+		action2.perform();
+
+		WebElement Timeslider3 = driver.findElement(By.xpath(RejectTermSlider));
+
+		Actions move3 = new Actions(driver);
+		Action action3 = (Action) move3.dragAndDropBy(Timeslider3, 64, 0).build();
+		action3.perform();
+
+		WebElement Timeslider31 = driver.findElement(By.xpath(AutoAcceptanceThresholdSlider));
+
+		Actions move31 = new Actions(driver);
+		Action action31 = (Action) move31.dragAndDropBy(Timeslider31, 60, 0).build();
+		action31.perform();
+
+		JavascriptExecutor js2 = (JavascriptExecutor) driver;
+		js2.executeScript("window.scrollBy(0,300);");
+		threadwait(3000);
+
+		driver.findElement(By.xpath(AlertsOnActivityCompletion)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(AlertsOnCreatingQueriesCitations)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(AlertsOnRejectingCitationReview)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(AlertsOnWorkflowCompletion)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(AlertsOnFTArequests)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(AlertsOnQueryChangeArchivedCitation)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(AlertsOnActivityCompletionText)).sendKeys(AlertsOnActivityCompletionInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(AlertsOnCreatingQueriesCitationsText))
+				.sendKeys(AlertsOnCreatingQueriesCitationsInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(AlertsOnRejectingCitationReviewText))
+				.sendKeys(AlertsOnRejectingCitationReviewInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(AlertsOnWorkflowCompletionText)).sendKeys(AlertsOnWorkflowCompletionInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(AlertsOnFTArequestsText)).sendKeys(AlertsOnFTArequestsInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(AlertsOnQueryChangeArchivedCitationText))
+				.sendKeys(AlertsOnQueryChangeArchivedCitationInput);
+		threadwait(1000);
+
+		File screenshotFile2 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile2, new File(
+				"D://All_Software//ScreenShots//Business_Unit//BusinessUnit_03_" + screenShotFileName + ".png"));
+		threadwait(2000);
+
+		driver.findElement(By.xpath(SaveandClose)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(ClearButton)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(AdvanceFilter)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(NameText)).sendKeys(BUNameInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(BUInterchangeIdText)).sendKeys(BUInterchangeIdInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(Search)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(ViewBu)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(Parameters)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(EnbaleML)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(Enbale)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(Boby)).clear();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(CCAddress)).clear();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(Subject)).clear();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(ToAddress)).clear();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(CaseInfoLabel)).clear();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(TagsLabel)).clear();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(SafetyRelevantLabel)).clear();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(StudyCategoryLabel)).clear();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(ProductsLabel)).clear();
+
+		driver.findElement(By.xpath(Boby)).sendKeys(BobyInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(CCAddress)).sendKeys(CCAddressInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(Subject)).sendKeys(SubjectInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(ToAddress)).sendKeys(ToAddressInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(CaseInfoLabel)).sendKeys(CaseInfoLabelInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(TagsLabel)).sendKeys(TagsLabelInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(SafetyRelevantLabel)).sendKeys(SafetyRelevantLabelInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(StudyCategoryLabel)).sendKeys(StudyCategoryLabelInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(ProductsLabel)).sendKeys(ProductsLabelInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(EnableUseOnlyCPDLibrary)).click();
+		threadwait(1000);
+
+		File screenshotFile3 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile3, new File(
+				"D://All_Software//ScreenShots//Business_Unit//BusinessUnit_04_" + screenShotFileName + ".png"));
+
+		JavascriptExecutor js1 = (JavascriptExecutor) driver;
+		js1.executeScript("window.scrollBy(0,400);");
+		threadwait(3000);
+
+		driver.findElement(By.xpath(WFRejected)).clear();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(WFSafety)).clear();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(WFICSR)).clear();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(WFRejected)).sendKeys(WFRejectedInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(WFSafety)).sendKeys(WFSafetyInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(WFICSR)).sendKeys(WFICSRInput);
+		threadwait(1000);
+
+		File screenshotFile4 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile4, new File(
+				"D://All_Software//ScreenShots//Business_Unit//BusinessUnit_05_" + screenShotFileName + ".png"));
+
+		JavascriptExecutor js11 = (JavascriptExecutor) driver;
+		js11.executeScript("window.scrollBy(500,0);");
+		threadwait(5000);
+
+		driver.findElement(By.xpath(SavePara)).click();
+		threadwait(3000);
+
+		driver.findElement(By.xpath(LiteratureConfig)).click();
+		threadwait(1000);
+
+		JavascriptExecutor js12 = (JavascriptExecutor) driver;
+		js12.executeScript("window.scrollBy(500,0);");
+		threadwait(5000);
+
+		driver.findElement(By.xpath(SaveandClose)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(xpathReports)).click();
+		driver.findElement(By.xpath(xpathAdminAudit)).click();
+		logger.info("Navigating to Audit Report Filter");
+
+		threadwait(2000);
+
+		driver.findElement(By.xpath(xpathClearButton)).click();
+		logger.info("Clearing Audit Report Filter");
+		threadwait(10000);
+
+		driver.findElement(By.xpath(useridsearch)).sendKeys(UserIdInput);
+		threadwait(2000);
+
+		driver.findElement(By.xpath(xpathModuleName)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(xpathMoudleSearcgBar)).sendKeys(ModuleNameInput);
+
+		logger.info("Entering the Module Name For Audit Report");
+		threadwait(2000);
+		driver.findElement(By.xpath(xpathSelectModule)).click();
+
+		File screenshotFile5 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile5, new File(
+				"D://All_Software//ScreenShots//Business_Unit//BusinessUnit_06_" + screenShotFileName + ".png"));
+
+		logger.info("ScreenShot taken once Before Applying the Filter ");
+
+		driver.findElement(By.xpath(xpathSearchauditButton)).click();
+		logger.info("Clickling Search button For Audit Report");
+		threadwait(5000);
+
+		File screenshotFile6 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile6, new File(
+				"D://All_Software//ScreenShots//Business_Unit//BusinessUnit_07_" + screenShotFileName + ".png"));
+
+		logger.info("ScreenShot after Applying the Filter ");
+
+		driver.findElement(By.xpath(xpathSessionId)).click();
+		logger.info("Navigating to Detailed Audit Report Filter");
+		threadwait(2000);
+
+		File screenshotFile7 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile7, new File(
+				"D://All_Software//ScreenShots//Business_Unit//BusinessUnit_08_" + screenShotFileName + ".png"));
+
+		logger.info("ScreenShot of Detailed Audit Report Filter ");
+
+		driver.findElement(By.xpath(xpathBackButton)).click();
+		logger.info("Navigating to Audit Report Listing Page");
+		threadwait(5000);
+
+		driver.findElement(By.xpath(xpathGenerateAll)).click();
+		threadwait(15000);
+		logger.info("Generating The Audit Report of Create BU");
+
+	}
+
+	public void createingBulkUser() throws IOException {
+		threadwait(5000);
+
+		logger.info("Creating a Bulk user and verifying created user Audit`");
+
+		Date currentdate = new Date();
+		String screenShotFileName = timeStampFormat.format(currentdate);
+
+		threadwait(5000);
+		String testDataFile = "selectMultipleLiteratures.json";
+		List<Map<String, String>> testData = TestDataFromJsonUtils.readJsonTestDataFromFile(testDataFile);
+
+		String Security = "//*[@id=\"menuform1:security\"]/a/span";
+		String User = "//*[@id=\"menuform1:user\"]/a";
+		String UploadUser = "//span[@class='ui-button-text ui-c'][normalize-space()='Upload Users']";
+		String Password = "/html/body/div[2]/form[3]/div/div[2]/div/div[2]/input";
+
+		String SupportingDocument = "//input[@id='uploadUsersForm:supDocProducts_input']";
+		String UplaodButton = "//span[normalize-space()='Upload']";
+		String SaveButton = "//button[@id='uploadUsersForm:j_idt108']//span[@class='ui-button-text ui-c'][normalize-space()='Save']";
+
+		String xpathReports = "//span[normalize-space()='Reports']";
+		String xpathAdminAudit = "//a[@href='/ReTrans/views/audit/filterPanel.xhtml']//span[contains(text(),'Admin')]";
+		String xpathClearButton = "//span[@class='ui-button-icon-left ui-icon ui-c fa fa-eraser F20 gray']";
+		String xpathModuleName = "//*[@id=\"filterPanelForm:panelContextType_label\"]";
+		String xpathSelectModule = "//td[normalize-space()='NLP']";
+		String xpathMoudleSearcgBar = "//input[@id='filterPanelForm:panelContextType_filter']";
+		String xpathSearchauditButton = "//span[normalize-space()='Search']";
+		String xpathSessionId = "//a[@id='auditlistListForm:auditlistGrid:0:j_idt38']";
+		String xpathBackButton = "//*[@id=\"auditFieldLogForm:j_idt34\"]";
+		String xpathGenerateAll = "//span[normalize-space()='Generate Report(All)']";
+		String useridsearch = "//input[@id='filterPanelForm:j_idt40']";
+
+		String PasswordInput = testData.get(14).get("PasswordInput");
+		String SupportingDocumentInput = testData.get(14).get("SupportingDocumentInput");
+		String UserIdInput = testData.get(14).get("UserIdInput");
+		String ModuleNameInput = testData.get(14).get("ModuleNameInput");
+
+		driver.findElement(By.xpath(Security)).click();
+		driver.findElement(By.xpath(User)).click();
+		logger.info("Navigating to User listing page");
+		threadwait(2000);
+
+		driver.findElement(By.xpath(UploadUser)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(SupportingDocument)).sendKeys(SupportingDocumentInput);
+		logger.info("Selecting the Csv File to Upload");
+		threadwait(3000);
+
+		driver.findElement(By.xpath(UplaodButton)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(Password)).sendKeys(PasswordInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(SaveButton)).click();
+		threadwait(1000);
+
+		File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile, new File(
+				"D://All_Software//ScreenShots//Create_Bulk_Users//CreateBulkUsers01_" + screenShotFileName + ".png"));
+
+		driver.findElement(By.xpath(xpathReports)).click();
+		driver.findElement(By.xpath(xpathAdminAudit)).click();
+		logger.info("Navigating to Audit Report Filter");
+
+		threadwait(2000);
+
+		driver.findElement(By.xpath(xpathClearButton)).click();
+		logger.info("Clearing Audit Report Filter");
+		threadwait(10000);
+
+		driver.findElement(By.xpath(useridsearch)).sendKeys(UserIdInput);
+		threadwait(2000);
+
+		driver.findElement(By.xpath(xpathModuleName)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(xpathMoudleSearcgBar)).sendKeys(ModuleNameInput);
+
+		logger.info("Entering the Module Name For Audit Report");
+		threadwait(2000);
+		driver.findElement(By.xpath(xpathSelectModule)).click();
+
+		File screenshotFile1 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile1, new File(
+				"D://All_Software//ScreenShots//Create_Bulk_Users//CreateBulkUsers02_" + screenShotFileName + ".png"));
+
+		logger.info("ScreenShot taken once Before Applying the Filter ");
+
+		driver.findElement(By.xpath(xpathSearchauditButton)).click();
+		logger.info("Clickling Search button For Audit Report");
+		threadwait(5000);
+
+		File screenshotFile2 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile2, new File(
+				"D://All_Software//ScreenShots//Create_Bulk_Users//CreateBulkUsers03_" + screenShotFileName + ".png"));
+
+		logger.info("ScreenShot after Applying the Filter ");
+
+		driver.findElement(By.xpath(xpathSessionId)).click();
+		logger.info("Navigating to Detailed Audit Report Filter");
+		threadwait(2000);
+
+		File screenshotFile3 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile3, new File(
+				"D://All_Software//ScreenShots//Create_Bulk_Users//CreateBulkUsers04_" + screenShotFileName + ".png"));
+
+		logger.info("ScreenShot of Detailed Audit Report Filter ");
+
+		driver.findElement(By.xpath(xpathBackButton)).click();
+		logger.info("Navigating to Audit Report Listing Page");
+		threadwait(5000);
+
+		driver.findElement(By.xpath(xpathGenerateAll)).click();
+		threadwait(15000);
+		logger.info("Generating The Audit Report of Create BU");
+
+	}
+
+	public void createProduct() throws IOException {
+		threadwait(5000);
+
+		logger.info("Creating a Product and verifying created Product Audit`");
+
+		Date currentdate = new Date();
+		String screenShotFileName = timeStampFormat.format(currentdate);
+
+		threadwait(5000);
+		String testDataFile = "selectMultipleLiteratures.json";
+		List<Map<String, String>> testData = TestDataFromJsonUtils.readJsonTestDataFromFile(testDataFile);
+
+		String Libary = "//body/div[@id='layout-topbar-cover']/div[@id='layout-topbar']/form[@id='menuform1']/div[@id='layout-menu-cover']/ul[@id='layout-menu']/li[@id='menuform1:admin_xml']/a[1]";
+		String LPDLibary = "//a[@href='/ReTrans/views/lpd/list.xhtml']";
+		String Create = "//button[@id='lpdListForm:lpdGrid:j_idt38']//span[@class='ui-button-text ui-c']";
+		String BusinessUnitLookup = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[1]/div/div[1]/div[2]/button";
+		String BUName = "//input[@id='lpdCompanyUnitLookForm:j_idt354']";
+		String BUid = "//input[@id='lpdCompanyUnitLookForm:j_idt356']";
+		String Search = "//span[normalize-space()='Search']";
+		String SelectBU = "/html/body/div[2]/div[2]/div/form[2]/div/div[2]/div/div[3]/div[4]/table/tbody/tr/td[1]/div/div[2]/span";
+		String SelectBusinessUnit = "//span[normalize-space()='Select']";
+		String ProductRecordType = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[1]/div/div[1]/div[4]/div";
+		String ProductRecordTypeSearch = "/html/body/div[14]/div[1]/input";
+		String ProductRecordTypeSelect = "/html/body/div[14]/div[2]/table/tbody/tr[4]";
+		String EnableActive = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[1]/div/div[1]/div[6]/div/div[2]";
+		String AlertId = "//input[@id='createlpdForm:alertId']";
+
+		String ProductType = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[1]/div/div[2]/div[4]/div/div[3]";
+		String ProductTypeSearch = "/html/body/div[15]/div[1]/input";
+		String ProductTypeSelect = "/html/body/div[15]/div[2]/table/tbody/tr[5]/td";
+
+		String TherapeuticArea = "/html/body/div[2]/div[2]/div/form[1]/div[1]/div[1]/div/div[2]/div[6]/div/div[3]";
+		String TherapeuticAreaSearch = "/html/body/div[16]/div[1]/input";
+		String TherapeuticAreaSelect = "/html/body/div[16]/div[2]/table/tbody/tr[5]/td";
+
+		String Product = "//input[@id='createlpdForm:localTradeName']";
+		String ProductName = "//input[@id='createlpdForm:intTradeName']";
+		String Concentration = "//input[@id='createlpdForm:concentration']";
+		String Description = "//textarea[@id='createlpdForm:description']";
+		String SaveandClose = "//span[normalize-space()='Save and Close']";
+
+		String xpathReports = "//span[normalize-space()='Reports']";
+		String xpathAdminAudit = "//a[@href='/ReTrans/views/audit/filterPanel.xhtml']//span[contains(text(),'Admin')]";
+		String xpathClearButton = "//span[@class='ui-button-icon-left ui-icon ui-c fa fa-eraser F20 gray']";
+		String xpathModuleName = "//*[@id=\"filterPanelForm:panelContextType_label\"]";
+		String xpathSelectModule = "//td[normalize-space()='NLP']";
+		String xpathMoudleSearcgBar = "//input[@id='filterPanelForm:panelContextType_filter']";
+		String xpathSearchauditButton = "//span[normalize-space()='Search']";
+		String xpathSessionId = "//a[@id='auditlistListForm:auditlistGrid:0:j_idt38']";
+		String xpathBackButton = "//*[@id=\"auditFieldLogForm:j_idt34\"]";
+		String xpathGenerateAll = "//span[normalize-space()='Generate Report(All)']";
+		String useridsearch = "//input[@id='filterPanelForm:j_idt40']";
+
+		String BUIdInput = testData.get(15).get("BUIdInput");
+		String BUNameInput = testData.get(15).get("BUNameInput");
+		String ProductRecordTypeInput = testData.get(15).get("ProductRecordTypeInput");
+		String AlertIdInput = testData.get(15).get("AlertIdInput");
+		String ProductTypeInput = testData.get(15).get("ProductTypeInput");
+		String TherapeuticAreaInput = testData.get(15).get("TherapeuticAreaInput");
+		String ProductInput = testData.get(15).get("ProductInput");
+		String ProductNameInput = testData.get(15).get("ProductNameInput");
+		String ConcentrationInput = testData.get(15).get("ConcentrationInput");
+		String DescriptionInput = testData.get(15).get("DescriptionInput");
+		String UserIdInput = testData.get(15).get("UserIdInput");
+		String ModuleNameInput = testData.get(15).get("ModuleNameInput");
+
+		driver.findElement(By.xpath(Libary)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(LPDLibary)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(Create)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(BusinessUnitLookup)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(BUName)).sendKeys(BUNameInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(BUid)).sendKeys(BUIdInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(Search)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(SelectBU)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(SelectBusinessUnit)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(ProductRecordType)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(ProductRecordTypeSearch)).sendKeys(ProductRecordTypeInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(ProductRecordTypeSelect)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(EnableActive)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(AlertId)).sendKeys(AlertIdInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(ProductType)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(ProductTypeSearch)).sendKeys(ProductTypeInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(ProductTypeSelect)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(TherapeuticArea)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(TherapeuticAreaSearch)).sendKeys(TherapeuticAreaInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(TherapeuticAreaSelect)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(Product)).sendKeys(ProductInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(ProductName)).sendKeys(ProductNameInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(Concentration)).sendKeys(ConcentrationInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(Description)).sendKeys(DescriptionInput);
+		threadwait(1000);
+
+		File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile, new File(
+				"D://All_Software//ScreenShots//Create_Product//CreateProduct01_" + screenShotFileName + ".png"));
+
+		driver.findElement(By.xpath(SaveandClose)).click();
+
+		driver.findElement(By.xpath(xpathReports)).click();
+		driver.findElement(By.xpath(xpathAdminAudit)).click();
+		logger.info("Navigating to Audit Report Filter");
+
+		threadwait(2000);
+
+		driver.findElement(By.xpath(xpathClearButton)).click();
+		logger.info("Clearing Audit Report Filter");
+		threadwait(10000);
+
+		driver.findElement(By.xpath(useridsearch)).sendKeys(UserIdInput);
+		threadwait(2000);
+
+		driver.findElement(By.xpath(xpathModuleName)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(xpathMoudleSearcgBar)).sendKeys(ModuleNameInput);
+
+		logger.info("Entering the Module Name For Audit Report");
+		threadwait(2000);
+		driver.findElement(By.xpath(xpathSelectModule)).click();
+
+		File screenshotFile1 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile1, new File(
+				"D://All_Software//ScreenShots//Create_Product//CreateProduct02_" + screenShotFileName + ".png"));
+
+		logger.info("ScreenShot taken once Before Applying the Filter ");
+
+		driver.findElement(By.xpath(xpathSearchauditButton)).click();
+		logger.info("Clickling Search button For Audit Report");
+		threadwait(5000);
+
+		File screenshotFile2 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile2, new File(
+				"D://All_Software//ScreenShots//Create_Product//CreateProduct03_" + screenShotFileName + ".png"));
+
+		logger.info("ScreenShot after Applying the Filter ");
+
+		driver.findElement(By.xpath(xpathSessionId)).click();
+		logger.info("Navigating to Detailed Audit Report Filter");
+		threadwait(2000);
+
+		File screenshotFile3 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile3, new File(
+				"D://All_Software//ScreenShots//Create_Product//CreateProduct04_" + screenShotFileName + ".png"));
+
+		logger.info("ScreenShot of Detailed Audit Report Filter ");
+
+		driver.findElement(By.xpath(xpathBackButton)).click();
+		logger.info("Navigating to Audit Report Listing Page");
+		threadwait(5000);
+
+		driver.findElement(By.xpath(xpathGenerateAll)).click();
+		threadwait(15000);
+		logger.info("Generating The Audit Report of Create BU");
+	}
+
+	public void creatingBulkProductandExportProducts() throws IOException {
+		threadwait(5000);
+
+		logger.info("Creating a Product and verifying created Product Audit`");
+
+		Date currentdate = new Date();
+		String screenShotFileName = timeStampFormat.format(currentdate);
+
+		threadwait(5000);
+		String testDataFile = "selectMultipleLiteratures.json";
+		List<Map<String, String>> testData = TestDataFromJsonUtils.readJsonTestDataFromFile(testDataFile);
+
+		String Libary = "//body/div[@id='layout-topbar-cover']/div[@id='layout-topbar']/form[@id='menuform1']/div[@id='layout-menu-cover']/ul[@id='layout-menu']/li[@id='menuform1:admin_xml']/a[1]";
+		String LPDLibary = "//a[@href='/ReTrans/views/lpd/list.xhtml']";
+		String Clear = "//span[normalize-space()='Clear']";
+		String ReloadCache = "//span[normalize-space()='Reload Cache']";
+		String CheckBox = "/html/body/div[2]/form[1]/div[1]/div[3]/div/table/thead/tr/th[1]/div/div[2]/span";
+		String ExportProduct = "//span[normalize-space()='Export Products']";
+		String Title = "//input[@id='submitRecReportForm:title']";
+		String Description = "//textarea[@id='submitRecReportForm:notes']";
+		String Submit = "//span[normalize-space()='Submit']";
+		String AdanceFilter = "//span[@class='ui-button-text ui-c'][normalize-space()='Advance Filter']";
+
+		String ProductActive = "/html/body/div[2]/form[2]/div/div[2]/div/div/div/div/div[3]/div[4]/div/div[3]";
+		String ProductActiveSearch = "/html/body/div[24]/div[1]/input";
+		String ProductActiveSelect = "/html/body/div[24]/div[2]/table/tbody/tr[2]/td";
+		String Search = "//span[normalize-space()='Search']";
+		String UploadLPD = "//span[@class='ui-button-text ui-c'][normalize-space()='Upload LPD']";
+
+		String SupportingDoc = "//input[@id='uploadProdsForm:supDocProducts_input']";
+		String Close = "//button[@id='uploadProdsForm:j_idt94']//span[@class='ui-button-text ui-c'][normalize-space()='Close']";
+		String UplaodButton = "//span[normalize-space()='Upload']";
+		String SaveButton = "//button[@id='uploadProdsForm:j_idt93']//span[@class='ui-button-text ui-c'][normalize-space()='Save']";
+		String Reports = "//span[normalize-space()='Reports']";
+		String InboxReports = "//span[normalize-space()='Inbox Report..']";
+		String GenReports = "//a[@href='/ReTrans/views/genReportQueue/list.xhtml']";
+		String Refresh = "//span[normalize-space()='Refresh']";
+		String Status = "/html/body/div[2]/form/div[1]/div[1]/div/div[2]/div/div[3]";
+		String StatusSearch = "//input[@id='genReportQueueListForm:genReportQueueGrid:statusFilter_filter']";
+		String StatusSearchSelect = "/html/body/div[21]/div[2]/table/tbody/tr[4]/td";
+		String DownloadIcon = "/html/body/div[2]/form/div[1]/div[4]/table/tbody/tr[1]/td[7]/a";
+
+		String xpathReports = "//span[normalize-space()='Reports']";
+		String xpathAdminAudit = "//a[@href='/ReTrans/views/audit/filterPanel.xhtml']//span[contains(text(),'Admin')]";
+		String xpathClearButton = "//span[@class='ui-button-icon-left ui-icon ui-c fa fa-eraser F20 gray']";
+		String xpathModuleName = "//*[@id=\"filterPanelForm:panelContextType_label\"]";
+		String xpathSelectModule = "//td[normalize-space()='NLP']";
+		String xpathMoudleSearcgBar = "//input[@id='filterPanelForm:panelContextType_filter']";
+		String xpathSearchauditButton = "//span[normalize-space()='Search']";
+		String xpathSessionId = "//a[@id='auditlistListForm:auditlistGrid:0:j_idt38']";
+		String xpathBackButton = "//*[@id=\"auditFieldLogForm:j_idt34\"]";
+		String xpathGenerateAll = "//span[normalize-space()='Generate Report(All)']";
+		String useridsearch = "//input[@id='filterPanelForm:j_idt40']";
+
+		String TitleInput = testData.get(16).get("TitleInput");
+		String DescriptionInput = testData.get(16).get("DescriptionInput");
+		String ProductActiveInput = testData.get(16).get("ProductActiveInput");
+		String SupportingProductInput = testData.get(16).get("SupportingProductInput");
+		String StatusInput = testData.get(16).get("StatusInput");
+		String UserIdInput = testData.get(16).get("UserIdInput");
+		String ModuleNameInput = testData.get(16).get("ModuleNameInput");
+
+		driver.findElement(By.xpath(Libary)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(LPDLibary)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(ReloadCache)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(Clear)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(AdanceFilter)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(ProductActive)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(ProductActiveSearch)).sendKeys(ProductActiveInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(ProductActiveSelect)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(Search)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(CheckBox)).click();
+		threadwait(1000);
+
+		File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile, new File(
+				"D://All_Software//ScreenShots//Create_Bulk_Product_And_Export_Product//CreateBulkProductExportProduct01_"
+						+ screenShotFileName + ".png"));
+
+		driver.findElement(By.xpath(ExportProduct)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(Title)).sendKeys(TitleInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(Description)).sendKeys(DescriptionInput);
+		threadwait(1000);
+
+		File screenshotFile1 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile1, new File(
+				"D://All_Software//ScreenShots//Create_Bulk_Product_And_Export_Product//CreateBulkProductExportProduct02_"
+						+ screenShotFileName + ".png"));
+
+		driver.findElement(By.xpath(Submit)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(Clear)).click();
+		threadwait(2000);
+
+		threadwait(2000);
+		driver.findElement(By.xpath(Libary)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(LPDLibary)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(ReloadCache)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(Clear)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(UploadLPD)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(Close)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(UploadLPD)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(SupportingDoc)).sendKeys(SupportingProductInput);
+		logger.info("Selecting the Csv File to Upload");
+		threadwait(5000);
+
+		File screenshotFile2 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile2, new File(
+				"D://All_Software//ScreenShots//Create_Bulk_Product_And_Export_Product//CreateBulkProductExportProduct03_"
+						+ screenShotFileName + ".png"));
+
+		driver.findElement(By.xpath(UplaodButton)).click();
+		threadwait(2000);
+
+		File screenshotFile3 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile3, new File(
+				"D://All_Software//ScreenShots//Create_Bulk_Product_And_Export_Product//CreateBulkProductExportProduct04_"
+						+ screenShotFileName + ".png"));
+
+		driver.findElement(By.xpath(SaveButton)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(Reports)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(InboxReports)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(GenReports)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(Refresh)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(Status)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(StatusSearch)).sendKeys(StatusInput);
+		threadwait(2000);
+
+		driver.findElement(By.xpath(StatusSearchSelect)).click();
+		threadwait(5000);
+
+		driver.findElement(By.xpath(DownloadIcon)).click();
+		threadwait(3000);
+
+		File screenshotFile4 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile4, new File(
+				"D://All_Software//ScreenShots//Create_Bulk_Product_And_Export_Product//CreateBulkProductExportProduct05_"
+						+ screenShotFileName + ".png"));
+
+		driver.findElement(By.xpath(xpathReports)).click();
+		driver.findElement(By.xpath(xpathAdminAudit)).click();
+		logger.info("Navigating to Audit Report Filter");
+
+		threadwait(2000);
+
+		driver.findElement(By.xpath(xpathClearButton)).click();
+		logger.info("Clearing Audit Report Filter");
+		threadwait(10000);
+
+		driver.findElement(By.xpath(useridsearch)).sendKeys(UserIdInput);
+		threadwait(2000);
+
+		driver.findElement(By.xpath(xpathModuleName)).click();
+		threadwait(2000);
+
+		driver.findElement(By.xpath(xpathMoudleSearcgBar)).sendKeys(ModuleNameInput);
+
+		logger.info("Entering the Module Name For Audit Report");
+		threadwait(2000);
+		driver.findElement(By.xpath(xpathSelectModule)).click();
+
+		File screenshotFile5 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile5, new File(
+				"D://All_Software//ScreenShots//Create_Bulk_Product_And_Export_Product//CreateBulkProductExportProduct06_"
+						+ screenShotFileName + ".png"));
+
+		logger.info("ScreenShot taken once Before Applying the Filter ");
+
+		driver.findElement(By.xpath(xpathSearchauditButton)).click();
+		logger.info("Clickling Search button For Audit Report");
+		threadwait(5000);
+
+		File screenshotFile6 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile6, new File(
+				"D://All_Software//ScreenShots//Create_Bulk_Product_And_Export_Product//CreateBulkProductExportProduct07_"
+						+ screenShotFileName + ".png"));
+		logger.info("ScreenShot after Applying the Filter ");
+
+		driver.findElement(By.xpath(xpathSessionId)).click();
+		logger.info("Navigating to Detailed Audit Report Filter");
+		threadwait(2000);
+
+		File screenshotFile7 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile7, new File(
+				"D://All_Software//ScreenShots//Create_Bulk_Product_And_Export_Product//CreateBulkProductExportProduct08_"
+						+ screenShotFileName + ".png"));
+
+		logger.info("ScreenShot of Detailed Audit Report Filter ");
+
+		driver.findElement(By.xpath(xpathBackButton)).click();
+		logger.info("Navigating to Audit Report Listing Page");
+		threadwait(5000);
+
+		driver.findElement(By.xpath(xpathGenerateAll)).click();
+		threadwait(15000);
+		logger.info("Generating The Audit Report of Create BU");
+
+	}
+
+	public void creatingWorkFlowRules() throws IOException {
+		threadwait(5000);
+
+		logger.info("Creating a WorkFlowRules and verifying created WorkFlowRules and  Audit");
+
+		Date currentdate = new Date();
+		String screenShotFileName = timeStampFormat.format(currentdate);
+
+		threadwait(5000);
+		String testDataFile = "selectMultipleLiteratures.json";
+		List<Map<String, String>> testData = TestDataFromJsonUtils.readJsonTestDataFromFile(testDataFile);
+
+		String Libary = "//body/div[@id='layout-topbar-cover']/div[@id='layout-topbar']/form[@id='menuform1']/div[@id='layout-menu-cover']/ul[@id='layout-menu']/li[@id='menuform1:admin_xml']/a[1]";
+		String WorkFlowRules = "/html/body/div[1]/div/form[1]/div/ul/li[3]/ul/li[8]/a/span";
+		String Create = "//span[normalize-space()='Create']";
+		String PencilIconOne = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:0:j_idt115']//span[@class='ui-icon ui-icon-pencil']";
+		String PencilIconTwo = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:1:j_idt115']//span[@class='ui-icon ui-icon-pencil']";
+		String PencilIconthree = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:2:j_idt115']//span[@class='ui-icon ui-icon-pencil']";
+		String PencilIconfour = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:3:j_idt115']//span[@class='ui-icon ui-icon-pencil']";
+
+		String BUunit = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:0:companyId']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String BUunitSearch = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:0:companyId_filter']";
+		String BUunitSelect = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:0:companyId_2']//td[contains(text(),'BU_PV_Test')]";
+
+		String BUunit1 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:1:companyId']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String BUunitSearch1 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:1:companyId_filter']";
+		String BUunitSelect1 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:1:companyId_2']//td[contains(text(),'BU_PV_Test')]";
+
+		String BUunit2 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:2:companyId']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String BUunitSearch2 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:2:companyId_filter']";
+		String BUunitSelect2 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:2:companyId_2']//td[contains(text(),'BU_PV_Test')]";
+
+		String BUunit3 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:3:companyId']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String BUunitSearch3 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:3:companyId_filter']";
+		String BUunitSelect3 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:3:companyId_2']//td[contains(text(),'BU_PV_Test')]";
+
+		String RuleType = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:0:ruleType']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String RuleTypeSearch = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:0:ruleType_filter']";
+		String RuleTypeSelect = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:0:ruleType_1']//td[contains(text(),'Activity Completion')]";
+
+		String RuleType1 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:1:ruleType']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String RuleTypeSearch1 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:1:ruleType_filter']";
+		String RuleTypeSelect1 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:1:ruleType_1']//td[contains(text(),'Activity Completion')]";
+
+		String RuleType2 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:2:ruleType']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String RuleTypeSearch2 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:2:ruleType_filter']";
+		String RuleTypeSelect2 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:2:ruleType_1']//td[contains(text(),'Activity Completion')]";
+
+		String RuleType3 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:3:ruleType']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String RuleTypeSearch3 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:3:ruleType_filter']";
+		String RuleTypeSelect3 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:3:ruleType_3']//td[contains(text(),'Sending Email as Submission')]";
+
+		String WFActivity = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:0:activityId']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String WFActivitySearch = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:0:activityId_filter']";
+		String WFActivitySelect = "//td[normalize-space()='Initial Review']";
+
+		String WFActivity1 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:1:activityId']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String WFActivitySearch1 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:1:activityId_filter']";
+		String WFActivitySelect1 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:1:activityId_6']//td[contains(text(),'QC Review')]";
+
+		String WFActivity2 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:2:activityId']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String WFActivitySearch2 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:2:activityId_filter']";
+		String WFActivitySelect2 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:2:activityId_6']//td[contains(text(),'QC Review')]";
+
+		String WFActivity3 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:3:activityId']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String WFActivitySearch3 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:3:activityId_filter']";
+		String WFActivitySelect3 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:3:activityId_6']//td[contains(text(),'QC Review')]";
+
+		String ExecutionTime = "//label[@id='wfActivityRuleForm:wfActivityRuleGrid:0:executionTime_label']";
+		String ExecutionTimeSearch = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:0:executionTime_filter']";
+		String ExecutionTimeSelect = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:0:executionTime_1']//td[contains(text(),'NA')]";
+
+		String ExecutionTime1 = "//label[@id='wfActivityRuleForm:wfActivityRuleGrid:1:executionTime_label']";
+		String ExecutionTimeSearch1 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:1:executionTime_filter']";
+		String ExecutionTimeSelect1 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:1:executionTime_1']//td[contains(text(),'NA')]";
+
+		String ExecutionTime3 = "//label[@id='wfActivityRuleForm:wfActivityRuleGrid:3:executionTime_label']";
+		String ExecutionTimeSearch3 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:3:executionTime_filter']";
+		String ExecutionTimeSelect3 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:3:executionTime_2']//td[contains(text(),'On Entry')]";
+
+		String ExecutionTime2 = "//label[@id='wfActivityRuleForm:wfActivityRuleGrid:2:executionTime_label']";
+		String ExecutionTimeSearch2 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:2:executionTime_filter']";
+		String ExecutionTimeSelect2 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:2:executionTime_1']//td[contains(text(),'NA')]";
+
+		String Classification = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:0:classification']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String ClassificationSearch = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:0:classification_filter']";
+		String ClassificationSelect = "//td[normalize-space()='ICSR']";
+
+		String Classification1 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:1:classification']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String ClassificationSearch1 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:1:classification_filter']";
+		String ClassificationSelect1 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:1:classification_1']";
+
+		String Classification2 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:2:classification']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String ClassificationSearch2 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:2:classification_filter']";
+		String ClassificationSelect2 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:2:classification_5']//td[contains(text(),'Re-Evaluate')]";
+
+		String Classification3 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:3:classification']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String ClassificationSearch3 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:3:classification_filter']";
+		String ClassificationSelect3 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:3:classification_1']//td[contains(text(),'ICSR')]";
+
+		String WFPathTarget = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:0:activityCompletionPathId']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String WFPathTargetSearch = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:0:activityCompletionPathId_filter']";
+		String WFPathTargetSelect = "//td[normalize-space()='To QC Review']";
+
+		String WFPathTarget1 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:1:activityCompletionPathId']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String WFPathTargetSearch1 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:1:activityCompletionPathId_filter']";
+		String WFPathTargetSelect1 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:1:activityCompletionPathId_1']//td[contains(text(),'To End')]";
+
+		String WFPathTarget2 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:2:activityCompletionPathId']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String WFPathTargetSearch2 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:2:activityCompletionPathId_filter']";
+		String WFPathTargetSelect2 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:2:activityCompletionPathId_2']//td[contains(text(),'Back To Initial Review')]";
+
+		String ActionRemarks = "//textarea[@id='wfActivityRuleForm:wfActivityRuleGrid:0:defRemarks']";
+		String ActionRemarks1 = "//textarea[@id='wfActivityRuleForm:wfActivityRuleGrid:1:defRemarks']";
+		String ActionRemarks2 = "//textarea[@id='wfActivityRuleForm:wfActivityRuleGrid:2:defRemarks']";
+		String ActionRemarks3 = "//textarea[@id='wfActivityRuleForm:wfActivityRuleGrid:3:defRemarks']";
+
+		String AutoAction = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:0:isWFActAutoComplete']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String AutoActionSearch = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:0:isWFActAutoComplete_filter']";
+		String AutoActionSelect = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:0:isWFActAutoComplete_1']//td[contains(text(),'Yes')]";
+
+		String AutoAction1 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:1:isWFActAutoComplete']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String AutoActionSearch1 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:1:isWFActAutoComplete_filter']";
+		String AutoActionSelect1 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:1:isWFActAutoComplete_1']//td[contains(text(),'Yes')]";
+
+		String AutoAction2 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:2:isWFActAutoComplete']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String AutoActionSearch2 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:2:isWFActAutoComplete_filter']";
+		String AutoActionSelect2 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:2:isWFActAutoComplete_1']//td[contains(text(),'Yes')]";
+
+		String AutoAction3 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:3:isWFActAutoComplete']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String AutoActionSearch3 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:3:isWFActAutoComplete_filter']";
+		String AutoActionSelect3 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:3:isWFActAutoComplete_1']//td[contains(text(),'Yes')]";
+
+		String Itemtype = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:0:itemType']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String ItemtypeSearch = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:0:itemType_filter']";
+		String ItemtypeSelect = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:0:itemType_1']//td[contains(text(),'Literature')]";
+
+		String Itemtype1 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:1:itemType']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String ItemtypeSearch1 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:1:itemType_filter']";
+		String ItemtypeSelect1 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:1:itemType_1']//td[contains(text(),'Literature')]";
+
+		String Itemtype2 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:2:itemType']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String ItemtypeSearch2 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:2:itemType_filter']";
+		String ItemtypeSelect2 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:2:itemType_1']//td[contains(text(),'Literature')]";
+
+		String Itemtype3 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:3:itemType']//div[@class='ui-selectonemenu-trigger ui-state-default ui-corner-right']";
+		String ItemtypeSearch3 = "//input[@id='wfActivityRuleForm:wfActivityRuleGrid:3:itemType_filter']";
+		String ItemtypeSelect3 = "//tr[@id='wfActivityRuleForm:wfActivityRuleGrid:3:itemType_1']//td[contains(text(),'Literature')]";
+
+		String Save = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:0:j_idt115']//span[@class='ui-icon ui-icon-check ui-c']";
+		String Save1 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:1:j_idt115']//span[@class='ui-icon ui-icon-check ui-c']";
+		String Save2 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:2:j_idt115']//span[@class='ui-icon ui-icon-check ui-c']";
+		String Save3 = "//div[@id='wfActivityRuleForm:wfActivityRuleGrid:3:j_idt115']//span[@class='ui-icon ui-icon-check ui-c']";
+
+		String BUunitInput = testData.get(17).get("BUunitInput");
+		String RuleTypeInput = testData.get(17).get("RuleTypeInput");
+		String RuleTypeInput1 = testData.get(17).get("RuleTypeInput1");
+		String ExecutionTimeInput = testData.get(17).get("ExecutionTimeInput");
+		String ExecutionTimeInput1 = testData.get(17).get("ExecutionTimeInput1");
+		String WFActivityInput = testData.get(17).get("WFActivityInput");
+		String ClassificationInput = testData.get(17).get("ClassificationInput");
+		String WFPathTargetInput = testData.get(17).get("WFPathTargetInput");
+		String ActionRemarksInput = testData.get(17).get("ActionRemarksInput");
+		String AutoActionInput = testData.get(17).get("AutoActionInput");
+		String ItemtypeInput = testData.get(17).get("ItemtypeInput");
+
+		String WFActivityInput1 = testData.get(17).get("WFActivityInput1");
+		String WFPathTargetInput1 = testData.get(17).get("WFPathTargetInput1");
+		String ActionRemarksInput1 = testData.get(17).get("ActionRemarksInput1");
+
+		String ClassificationInput1 = testData.get(17).get("ClassificationInput1");
+		String WFPathTargetInput2 = testData.get(17).get("WFPathTargetInput2");
+
+		String ActionRemarksInput2 = testData.get(17).get("ActionRemarksInput2");
+		String ActionRemarksInput3 = testData.get(17).get("ActionRemarksInput3");
+
+		driver.findElement(By.xpath(Libary)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(WorkFlowRules)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(Create)).click();
+		threadwait(1000);
+
+//		driver.findElement(By.xpath(PencilIconOne)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(BUunit)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(BUunitSearch)).sendKeys(BUunitInput);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(BUunitSelect)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(RuleType)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(RuleTypeSearch)).sendKeys(RuleTypeInput);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(RuleTypeSelect)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(ExecutionTime)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(ExecutionTimeSearch)).sendKeys(ExecutionTimeInput);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(ExecutionTimeSelect)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(WFActivity)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(WFActivitySearch)).sendKeys(WFActivityInput);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(WFActivitySelect)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(Classification)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(ClassificationSearch)).sendKeys(ClassificationInput);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(ClassificationSelect)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(WFPathTarget)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(WFPathTargetSearch)).sendKeys(WFPathTargetInput);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(WFPathTargetSelect)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(ActionRemarks)).sendKeys(ActionRemarksInput);
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(AutoAction)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(AutoActionSearch)).sendKeys(AutoActionInput);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(AutoActionSelect)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(Itemtype)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(ItemtypeSearch)).sendKeys(ItemtypeInput);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(ItemtypeSelect)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(Save)).click();
+//		threadwait(3000);
+//
+//		File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+//		FileUtils.copyFile(screenshotFile,
+//				new File("D://All_Software//ScreenShots//Create_WorkFlow_Rules//Create_WorkFlow_Rules01_"
+//						+ screenShotFileName + ".png"));
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(Create)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(PencilIconTwo)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(BUunit1)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(BUunitSearch1)).sendKeys(BUunitInput);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(BUunitSelect1)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(RuleType1)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(RuleTypeSearch1)).sendKeys(RuleTypeInput);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(RuleTypeSelect1)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(ExecutionTime1)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(ExecutionTimeSearch1)).sendKeys(ExecutionTimeInput);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(ExecutionTimeSelect1)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(WFActivity1)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(WFActivitySearch1)).sendKeys(WFActivityInput1);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(WFActivitySelect1)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(Classification1)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(ClassificationSearch1)).sendKeys(ClassificationInput);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(ClassificationSelect1)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(WFPathTarget1)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(WFPathTargetSearch1)).sendKeys(WFPathTargetInput1);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(WFPathTargetSelect1)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(ActionRemarks1)).sendKeys(ActionRemarksInput1);
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(AutoAction1)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(AutoActionSearch1)).sendKeys(AutoActionInput);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(AutoActionSelect1)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(Itemtype1)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(ItemtypeSearch1)).sendKeys(ItemtypeInput);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(ItemtypeSelect1)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(Save1)).click();
+//		threadwait(3000);
+//
+//		File screenshotFile1 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+//		FileUtils.copyFile(screenshotFile1,
+//				new File("D://All_Software//ScreenShots//Create_WorkFlow_Rules//Create_WorkFlow_Rules02_"
+//						+ screenShotFileName + ".png"));
+//
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(Create)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(PencilIconthree)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(BUunit2)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(BUunitSearch2)).sendKeys(BUunitInput);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(BUunitSelect2)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(RuleType2)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(RuleTypeSearch2)).sendKeys(RuleTypeInput);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(RuleTypeSelect2)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(ExecutionTime2)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(ExecutionTimeSearch2)).sendKeys(ExecutionTimeInput);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(ExecutionTimeSelect2)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(WFActivity2)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(WFActivitySearch2)).sendKeys(WFActivityInput1);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(WFActivitySelect2)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(Classification2)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(ClassificationSearch2)).sendKeys(ClassificationInput1);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(ClassificationSelect2)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(WFPathTarget2)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(WFPathTargetSearch2)).sendKeys(WFPathTargetInput2);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(WFPathTargetSelect2)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(ActionRemarks2)).sendKeys(ActionRemarksInput2);
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(AutoAction2)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(AutoActionSearch2)).sendKeys(AutoActionInput);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(AutoActionSelect2)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(Itemtype2)).click();
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(ItemtypeSearch2)).sendKeys(ItemtypeInput);
+//		threadwait(1000);
+//
+//		driver.findElement(By.xpath(ItemtypeSelect2)).click();
+//		threadwait(3000);
+//
+//		driver.findElement(By.xpath(Save2)).click();
+//		threadwait(3000);
+//
+//		File screenshotFile2 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+//		FileUtils.copyFile(screenshotFile2,
+//				new File("D://All_Software//ScreenShots//Create_WorkFlow_Rules//Create_WorkFlow_Rules03_"
+//						+ screenShotFileName + ".png"));
+//
+//		threadwait(1000);
+
+//		driver.findElement(By.xpath(Create)).click();
+//		threadwait(1000);
+
+		driver.findElement(By.xpath(PencilIconfour)).click();
+		threadwait(3000);
+
+		driver.findElement(By.xpath(BUunit3)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(BUunitSearch3)).sendKeys(BUunitInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(BUunitSelect3)).click();
+		threadwait(3000);
+
+		driver.findElement(By.xpath(RuleType3)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(RuleTypeSearch3)).sendKeys(RuleTypeInput1);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(RuleTypeSelect3)).click();
+		threadwait(3000);
+
+		driver.findElement(By.xpath(ExecutionTime3)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(ExecutionTimeSearch3)).sendKeys(ExecutionTimeInput1);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(ExecutionTimeSelect3)).click();
+		threadwait(3000);
+
+		driver.findElement(By.xpath(WFActivity3)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(WFActivitySearch3)).sendKeys(WFActivityInput1);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(WFActivitySelect3)).click();
+		threadwait(3000);
+
+		driver.findElement(By.xpath(Classification3)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(ClassificationSearch3)).sendKeys(ClassificationInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(ClassificationSelect3)).click();
+		threadwait(3000);
+
+		driver.findElement(By.xpath(ActionRemarks3)).sendKeys(ActionRemarksInput3);
+		threadwait(3000);
+
+		driver.findElement(By.xpath(AutoAction3)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(AutoActionSearch3)).sendKeys(AutoActionInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(AutoActionSelect3)).click();
+		threadwait(3000);
+
+		driver.findElement(By.xpath(Itemtype3)).click();
+		threadwait(1000);
+
+		driver.findElement(By.xpath(ItemtypeSearch3)).sendKeys(ItemtypeInput);
+		threadwait(1000);
+
+		driver.findElement(By.xpath(ItemtypeSelect3)).click();
+		threadwait(3000);
+
+		driver.findElement(By.xpath(Save3)).click();
+		threadwait(3000);
 
 	}
 

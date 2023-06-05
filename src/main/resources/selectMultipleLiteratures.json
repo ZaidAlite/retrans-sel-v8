@@ -154,7 +154,129 @@
        "CSVForAppBucketTerms"				  : "D:\\All_Software\\Automation_Files_Input\\Sample_Accepted_Rejected_Terms.csv",
        "ModuleName"							  : "NLP",
        "UserId"                               : "Zaid_Qc"
-	}
+	},
+	
+	
+	{
+	
+	   "BUIdInput"				              : "BU_PV_Test",
+       "BUInterchangeIdInput"				  : "BU_PV_Test",
+       "BUNameInput"                          : "1",
+       "TypeSearchInput"			          : "UTF-8",
+	   "DepartmentInput"                      : "1",
+	   "EmailIdInput"                         : "1", 
+	   "FaxInput"                             : "1",
+	   "AddressInput"                         : "1",
+	   "WorkflowNameInput"                    : "PV Workflow 2 V01 active",
+	   "OnDuplicateInput"					  : "To Duplicate Review",
+	   "OnRejectInput"                        : "To Initial Review",
+	   "OnValidICSRInput"                     : "To Initial Review",
+	   "OnSafetyinfoInput"                    : "To Initial Review",
+	   "BobyInput"                            : "Automation_Testing",
+	   "CCAddressInput"                       : "Automation_Testing",             
+	   "SubjectInput"                   	  : "Automation_Testing",
+	   "ToAddressInput"                		  : "Automation_Testing",
+	   "CaseInfoLabelInput"				      : "Automation_Testing",
+	   "TagsLabelInput"						  : "Automation_Testing",
+	   "SafetyRelevantLabelInput"			  : "Automation_Testing",
+	   "StudyCategoryLabelInput"			  : "Automation_Testing",
+	   "ProductsLabelInput"					  : "Automation_Testing",
+	   "WFRejectedInput"					  : "7",
+	   "WFSafetyInput"						  : "45",
+	   "WFICSRInput"						  : "7",
+	   "AlertsOnActivityCompletionInput"	  : "Mzaid@aliteware.com",
+	   "AlertsOnCreatingQueriesCitationsInput" : "Mzaid@aliteware.com",
+	   "AlertsOnRejectingCitationReviewInput" : "Mzaid@aliteware.com",
+	   "AlertsOnWorkflowCompletionInput"	  : "Mzaid@aliteware.com",
+	   "AlertsOnFTArequestsInput" 			  : "Mzaid@aliteware.com",
+	   "AlertsOnQueryChangeArchivedCitationInput" : "Mzaid@aliteware.com",
+	   "UserIdInput"							  : "Zaid_Qc",
+	   "ModuleNameInput"					  : "Company Unit"
+	   
+	   	},
+	   	
+	   	{
+	   	
+	   	"PasswordInput" 					 : "#Ali12R$2", 
+	   	"SupportingDocumentInput"			 : "D:\\All_Software\\Automation_Files_Input\\BulkAppUsers.csv",		
+	   	"UserIdInput"					     : "Zaid_Qc",
+	    "ModuleNameInput"				     : "Company Unit"
+	   	
+	   	
+	   	},
+	   	
+	   	{
+	   	
+	   	"BUIdInput"              			: "BU_PV_Test",        
+	   	"BUNameInput"						: "BU_PV_Test",
+	   	"ProductRecordTypeInput" 			: "Update Knowledge",
+	   	"AlertIdInput" 						: "1",
+	   	"ProductTypeInput" 					: "Drug",
+	   	"TherapeuticAreaInput"				: "Neuroscience",
+	   	"ProductInput"						: "Dolo_650",
+	   	"ProductNameInput"					: "Dolo_650",
+	   	"ConcentrationInput"                : "Dolo_650",
+	   	"DescriptionInput"					: "Creating A Product",
+	   	"UserIdInput"					    : "Zaid_Qc",
+	    "ModuleNameInput"				    : "Company Unit"
+	   	
+	   	
+	 },
+	 
+	 
+	 {
+	 
+	 "TitleInput" 							: "Title for Automation",
+	 "DescriptionInput" 					: "Description for Automation",
+	 "ProductActiveInput" 					: "Active",
+	 "SupportingProductInput"	            : "D:\\All_Software\\Automation_Files_Input\\Bulk _Products_New_Sample.csv",
+	 "StatusInput" 							: "Completed",
+	 "UserIdInput"							: "Zaid_Qc",
+	 "ModuleNameInput" 						: ""
+	                                          
+	 
+	 },
+	 
+	 
+	 {
+	 
+	 "BUunitInput"				  : "BU_PV_Test",
+	 "RuleTypeInput" 			  : "Activity Completion",
+	 "ExecutionTimeInput" 		  : "NA",
+	 "WFActivityInput"			  : "Initial Review",
+	 "ClassificationInput" 		  : "ICSR",
+	 "WFPathTargetInput"		  : "To QC Review",
+	 "ActionRemarksInput"		  : "IR TO QC",
+	 "AutoActionInput"			  : "Yes",
+	 "ItemtypeInput"			  : "Literature",
+	 "WFActivityInput1"			  : "QC Review",
+	 "WFPathTargetInput1"         : "To End",
+	 "ActionRemarksInput1"		  : "QC TO END",
+	 "ClassificationInput1" 	  : "Re-Evaluate",
+	 "WFPathTargetInput2"         : "Back To Initial Review",
+	 "ActionRemarksInput2"        : "QC TO BACK TO IR",
+	 "RuleTypeInput1" 			  : "Sending Email as Submission",
+	 "ExecutionTimeInput1" 		  : "On Entry",
+	 "ActionRemarksInput3"        : "Sending email as Submission"
+	 
+	 	 }
+	 
+	    	
+	   	
+	   	
+	   	
+	   	
+	   	
+	   	
+	   	
+	   	
+	
+	
+	
+	
+	
+	
+	
 ]
 
 
